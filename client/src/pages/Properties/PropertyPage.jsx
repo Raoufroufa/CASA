@@ -196,7 +196,7 @@ function PropertyPage() {
             <h2 className="text-lg font-medium sm:text-xl text-gray-600">
               Category
             </h2>
-            <p className="mt-1 text-sm text-gray-700 text-gray-600">
+            <p className="mt-1 text-sm text-gray-600">
               {property.category}
             </p>
           </div>
