@@ -18,14 +18,7 @@ const getAllUsers = async (req, res) => {
     const users = await User.find({
       $or: [{ role: "Owner" }, { role: "Client" }],
     }).select("-password");
-    // // .populate("properties");
-    // const clients = await User.find({ role: "" }).select("-password");
-    // // .populate("posts");
-
-    // const allUsers = {
-    //   owners,
-    //   clients,
-    // };
+ 
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
