@@ -1,4 +1,5 @@
 import User from "../mongodb/models/User.js";
+import { transporter } from "../configNodemailer.js";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -48,6 +49,16 @@ async function registration(req, res) {
     // Create a new user object without the password field
     const userWithoutPassword = user.toObject();
     delete userWithoutPassword.password;
+
+    // Send a Registration confirmation email to the user
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Confirmation d'enregistrement",
+      text: "Bienvenue à LA CASA. Merci pour votre inscription à notre plateforme !",
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({
       message: "User registered successfully",
@@ -151,6 +162,15 @@ async function resetPassword(req, res) {
     // Create a new user object without the password field
     const userWithoutPassword = user.toObject();
     delete userWithoutPassword.password;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Confirmation de réinitialisation du mot de passe ",
+      text: "Votre mot de passe a été réinitialisé avec succès!",
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({
       message: "User registered successfully",

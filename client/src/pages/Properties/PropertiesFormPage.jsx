@@ -96,24 +96,24 @@ function PropertiesFormPage() {
       <AccountNav />
       <form
         onSubmit={saveProperty}
-        className="border border-gray-300 rounded-lg shadow-xl p-8"
+        className="border border-gray-300 rounded-lg shadow-xl p-8 mx-auto  max-w-screen-xl "
       >
         <h2 className="text-2xl font-bold mb-4 text-center text-primary">
-          {id ? "Editing" : "Creating"} a Property
+          {id ? "Modifier" : "Créer"} une Propriété
         </h2>
         {preInput(
-          "Title",
-          "Title for your propety. should be short and catchy as in advertisement"
+          "Titre",
+          "Le titre de votre propriété doit être court et accrocheur comme dans la publicité"
         )}
         <input
           type="text"
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
-          placeholder="title, for example: beautiful apt"
+          placeholder="titre, par exemple : bel appartement"
         />
         {preInput(
-          "Category",
-          "Category for your property. Should be Renting or Flatsharing"
+          "Categorie",
+          "Catégorie pour votre propriété. Doit être en location ou en colocation"
         )}
         <div className="flex items-center space-x-6 mt-2">
           <label htmlFor="FlatSharing" className="flex items-center space-x-2">
@@ -126,7 +126,7 @@ function PropertiesFormPage() {
               onChange={(ev) => setcategory(ev.target.value)}
               className="form-radio h-4 w-4 text-primary"
             />
-            <span className="text-sm">Flatsharing</span>
+            <span className="text-sm">Colocation</span>
           </label>
           <label htmlFor="Renting" className="flex items-center space-x-2">
             <input
@@ -138,20 +138,20 @@ function PropertiesFormPage() {
               onChange={(ev) => setcategory(ev.target.value)}
               className="form-radio h-4 w-4 text-primary"
             />
-            <span className="text-sm">Renting</span>
+            <span className="text-sm">Location</span>
           </label>
         </div>
 
-        {preInput("Location", "Location to this property")}
+        {preInput("Localisation", "Emplacement de cette propriété")}
 
         <div className="flex gap-5">
           <select
-            className="w-[25%]"
+            className="w-[25%] rounded-2xl my-2 py-2 px-3 text-gray-600"
             value={wilaya}
             onChange={(e) => setWilaya(e.target.value)}
           >
             <option disabled value="">
-              wilaya
+              Wilaya
             </option>
             {wilayas.map((wilaya, i) => {
               return (
@@ -164,7 +164,7 @@ function PropertiesFormPage() {
           </select>
 
           <select
-            className="w-[25%]"
+            className="w-[25%] rounded-2xl my-2 py-2 px-3 text-gray-600"
             value={commune}
             onChange={(e) => setCommune(e.target.value)}
           >
@@ -188,15 +188,15 @@ function PropertiesFormPage() {
           />
         </div>
 
-        {preInput("Photos", "more = better")}
+        {preInput("Photos", "plus = mieux")}
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
-        {preInput("Description", "Description of the property")}
+        {preInput("Description", "Description de propriété")}
         <textarea
           value={description}
           onChange={(ev) => setDescription(ev.target.value)}
         />
 
-        {preInput("Contarct Type", "Contarct Type to this property")}
+        {preInput("Type de contrat", "Type de contrat pour cette propriété")}
         <div className="flex items-center space-x-6 mt-2">
           <label htmlFor="Annuel" className="flex items-center space-x-2">
             <input
@@ -223,16 +223,10 @@ function PropertiesFormPage() {
             <span className="text-sm">Mensuel</span>
           </label>
         </div>
-        {/* <input
-          type="text"
-          value={contractType}
-          onChange={(ev) => setContractType(ev.target.value)}
-          placeholder="contract Type"
-        /> */}
 
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>
-            <h3 className="mt-2 -mb-1">Price per month</h3>
+            <h3 className="mt-2 -mb-1">Prix par mois</h3>
             <input
               type="number"
               value={price}
@@ -240,7 +234,7 @@ function PropertiesFormPage() {
             />
           </div>
         </div>
-        <button className="primary my-4">Save</button>
+        <button className="primary my-4">Sauvegarder</button>
       </form>
     </div>
   );

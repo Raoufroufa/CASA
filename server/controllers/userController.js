@@ -1,4 +1,5 @@
 import User from "../mongodb/models/User.js";
+import Comment from "../mongodb/models/comment/Comment.js";
 import {transporter} from "../configNodemailer.js";
 import Post from "../mongodb/models/Post.js";
 import Property from "../mongodb/models/Property.js";
@@ -95,6 +96,8 @@ const updateUser = async (req, res) => {
       { new: true }
     );
 
+    const email = updatedUser.email;
+
     if (updatedUser) {
       // Generate updated JWT token
       const token = jwt.sign(
@@ -109,6 +112,15 @@ const updateUser = async (req, res) => {
           expiresIn: "3h",
         }
       );
+
+       const mailOptions = {
+         from: process.env.EMAIL_USER,
+         to: email,
+         subject: "Confirmation de la misa à jour  du compte",
+         text: "Votre compte a été mis à jour avec succès!",
+       };
+      
+      await transporter.sendMail(mailOptions);
 
       return res.status(200).json({
         message: "Your account updated successfully",
@@ -129,6 +141,7 @@ const deleteUser = async (req, res) => {
 
   try {
     const user = await User.findById(id);
+    const email = user.email;
     if (!user) {
       return res.status(404).json("User not found!");
     }
@@ -144,8 +157,19 @@ const deleteUser = async (req, res) => {
         await Post.deleteMany({ creator: { $in: id } });
       }
 
+      // Delete the comments associated with the user
+      await Comment.deleteMany({ creator: { $in: id } });
+
       // Delete the user
       await user.deleteOne();
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Confirmation de la suppression du compte",
+        text: "Votre compte a été supprimé !",
+      };
+      await transporter.sendMail(mailOptions);
 
       return res.status(200).json("User has been deleted successfully");
     } else {
@@ -183,30 +207,8 @@ const subscribeToNewsletter = async (req, res) => {
 
 };
 
-// const unsubscribeFromNewsletter = async (req, res) => {
-//   const { email } = req.body;
 
-//   try {
-//     // Update the user's subscribed field to false
-//     const user = await User.findOneAndUpdate({ email }, { subscribed: false });
 
-//     // Send an email to confirm unsubscription
-//     const mailOptions = {
-//       from: process.env.EMAIL_USER,
-//       to: email,
-//       subject: "Unsubscription Confirmation",
-//       text: "You have been unsubscribed from our newsletter.",
-//     };
-
-//     await transporter.sendMail(mailOptions);
-
-//     // Return a response indicating success
-//     res.status(200).json({ message: "Unsubscription successful", token });
-//   } catch (error) {
-//     // Handle any errors
-//     res.status(500).json({ message: "Unsubscription failed" });
-//   }
-// };
 
 const sendNewsletter = async (req, res) => { 
   const { subject, message } = req.body;

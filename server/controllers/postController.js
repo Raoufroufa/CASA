@@ -1,9 +1,17 @@
 import Post from "../mongodb/models/Post.js";
-import PostComment from "../mongodb/models/comment/PostComment.js"
+import PostComment from "../mongodb/models/comment/PostComment.js";
+
+import { transporter } from "../configNodemailer.js";
+
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
 
 const createPost = async (req, res) => {
   const { title, description } = req.body;
   const creator = req.user.id; // Assuming the authenticated user is the client
+  const email = req.user.email;
 
   try {
     // Check if the authenticated user is a Client
@@ -20,6 +28,15 @@ const createPost = async (req, res) => {
     });
 
     await post.save();
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Confirmation de création",
+      text: "Publication créée avec succès. Il est actuellement inactif.",
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(201).json({
       message: "Post created successfully. It is currently inactive.",
@@ -44,28 +61,7 @@ const getAllPosts = async (req, res) => {
       // Fetch all posts for Admin (active and non-active)
       const allPosts = await Post.find({});
       res.status(200).json(allPosts);
-    }
-    // else if (req.user.role === "Owner") {
-    //   // Fetch only active posts for Owner
-    //   const posts = await Post.find({ status: true });
-    //   res.status(200).json(posts);
-    // } else if (req.user.role === "Client") {
-    //   // Fetch all posts of the current client (active and non-active)
-    //   const clientPosts = await Post.find({
-    //     creator: req.user.id,
-    //   });
-
-    //   // Fetch active posts of other clients
-    //   const otherClientsPosts = await Post.find({
-    //     creator: { $ne: req.user.id },
-    //     status: true,
-    //   });
-
-    //   const posts = clientPosts.concat(otherClientsPosts);
-
-    //   res.status(200).json(posts);
-    // }
-    else {
+    }  else {
       res.status(401).json({ message: "Unauthorized access" });
     }
   } catch (err) {
@@ -112,7 +108,7 @@ const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate("creator");
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -130,6 +126,23 @@ const updatePost = async (req, res) => {
       const { status } = req.body;
       if (status !== undefined) {
         post.status = status;
+        if (post.status === true) {
+          const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: post.creator.email,
+            subject: "Activation de publication...",
+            text: "Votre pulication a été activée maintenant",
+          };
+          await transporter.sendMail(mailOptions);
+        } else {
+          const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: property.creator.email,
+            subject: "Désactivation de publication...",
+            text: "Votre publication a été désactivée ",
+          };
+          await transporter.sendMail(mailOptions);
+        }
       }
     } else  {
       return res
@@ -152,7 +165,7 @@ const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate("creator");
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -168,6 +181,14 @@ const deletePost = async (req, res) => {
 
     //   Delete the post
     await post.deleteOne();
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: post.creator.email,
+      subject: "Suppression de publication...",
+      text: "Votre publication a été suprimée...",
+    };
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({ message: "Post deleted successfully" });
   } catch (err) {

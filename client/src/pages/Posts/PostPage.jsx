@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext.jsx";
 import axios from "axios";
@@ -57,7 +57,7 @@ function PostPage() {
       await axios.delete(`/posts/${post._id}`);
 
       // Redirect the user to a different page or display a success message
-      alert("Property deleted successfully!");
+      alert("Publication supprimée avec succès !");
       if (decodedToken.role === "Admin") {
         navigate("/dashboard/posts");
       } else {
@@ -66,7 +66,7 @@ function PostPage() {
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to delete property:", error);
-      alert("Failed to delete property. Please try again.");
+      alert("Échec de la suppression de la publication. Veuillez réessayer.");
     }
   }
 
@@ -84,11 +84,11 @@ function PostPage() {
       setCommentText("");
 
       // Display a success message to the user
-      alert("Comment submitted successfully!");
+      alert("Commentaire envoyé avec succès !");
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to submit comment:", error);
-      alert("Failed to submit comment. Please try again.");
+      alert("Échec de l'envoi du commentaire. Veuillez réessayer.");
     }
   }
 
@@ -101,18 +101,20 @@ function PostPage() {
       setComments(comments.filter((comment) => comment._id !== commentId));
 
       // Display a success message to the user
-      alert("Comment deleted successfully!");
+      alert("Commentaire supprimé avec succès !");
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to delete comment:", error);
-      alert("Failed to delete comment. Please try again.");
+      alert("Impossible de supprimer le commentaire. Veuillez réessayer.");
     }
   }
 
   async function handleEditComment(commentId) {
     try {
       // Prompt the user to enter the updated comment text
-      const updatedCommentText = prompt("Enter the updated comment:");
+      const updatedCommentText = prompt(
+        "Saisissez le commentaire mis à jour :"
+      );
       // Check if the user entered a comment text
       if (updatedCommentText) {
         // Make an API call to update the comment
@@ -124,21 +126,34 @@ function PostPage() {
         setRefetsh(!refetsh);
 
         // Display a success message to the user
-        alert("Comment submitted successfully!");
+        alert("Commentaire envoyé avec succès !");
       } else {
         // Display a message indicating that the comment text cannot be empty
-        alert("Comment text cannot be empty. Please try again.");
+        alert(
+          "Le texte du commentaire ne peut pas être vide. Veuillez réessayer."
+        );
       }
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to submit comment:", error);
-      alert("Failed to submit comment. Please try again.");
+      alert("Échec de l'envoi du commentaire. Veuillez réessayer.");
     }
   }
+
+  const handleBack = () => {
+    // Use the window.history object to go back to the previous path
+    window.history.back();
+  };
+
+
   if (!post) return "";
 
   return (
-    <article className="rounded-xl bg-white p-4 ring ring-blue-50 sm:p-6 lg:p-8">
+    <article
+      className={`mt-36 bg-white rounded-xl mx-auto px-4 max-w-screen-xl md:px-8 py-6 ring ${
+        post.status ? "ring-green-500" : "ring-gray-500"
+      }`}
+    >
       <div className="flex items-start sm:gap-8">
         <div
           className="hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-primary"
@@ -155,11 +170,11 @@ function PostPage() {
 
         <div className="flex-grow">
           {decodedToken?.role !== "Admin" && (
-            <Link to="/account">
+            <button onClick={handleBack}>
               <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
-                Back
+                Retour
               </strong>
-            </Link>
+            </button>
           )}
 
           {decodedToken?.role === "Admin" && (
@@ -168,13 +183,13 @@ function PostPage() {
                 onClick={handleToggleStatus}
                 className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white"
               >
-                {post.status ? "Deactivate" : "Activate"}
+                {post.status ? "Désactiver" : "Activer"}
               </button>
               <button
                 onClick={handleDeletePost}
                 className="rounded border border-red-500 bg-red-500 hover:bg-red-600 px-3 py-1.5 text-[14px] font-medium text-white"
               >
-                Delete
+                Supprimer
               </button>
             </div>
           )}
@@ -184,7 +199,7 @@ function PostPage() {
                 onClick={handleDeletePost}
                 className="rounded border border-red-500 bg-red-500 hover:bg-red-600 px-3 py-1.5 text-[14px] font-medium text-white"
               >
-                Delete
+                Supprimer
               </button>
             </div>
           )}
@@ -218,7 +233,7 @@ function PostPage() {
           </div>
 
           <p className=" font-medium mt-3 text-gray-700 underline ">
-            Comments:
+            Commentaires:
           </p>
           <ul className="mt-4 space-y-2">
             {comments?.length > 0 ? (
@@ -226,7 +241,7 @@ function PostPage() {
                 {comments.map((comment) => (
                   <div
                     key={comment._id}
-                    className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300 mt-2 relative"
+                    className="block h-full rounded-lg border border-blue-400 p-3 hover:border-blue-300 mt-2 relative"
                   >
                     <strong className="font-medium text-gray-600">
                       {comment.creator?.name}
@@ -268,9 +283,9 @@ function PostPage() {
               </li>
             ) : (
               <li>
-                <div className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300">
+                <div className="block h-full rounded-lg border border-blue-400 p-3 hover:border-blue-300">
                   <strong className="font-medium text-gray-600">
-                    No comment yet.
+                    Aucun commentaire pour l'instant.
                   </strong>
                 </div>
               </li>
@@ -279,18 +294,18 @@ function PostPage() {
 
           {decodedToken && decodedToken.role !== "Admin" && (
             <>
-              <button onClick={handleCommentSubmit} className="mt-4">
-                <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
-                  Comment
-                </strong>
-              </button>
               <textarea
                 rows={3}
                 placeholder="Write your comment..."
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
-                className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300 mt-3"
+                className="block h-full rounded-lg border border-blue-400 p-3 hover:border-blue-300 mt-3"
               ></textarea>
+              <button onClick={handleCommentSubmit} className="mt-4">
+                <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
+                  Commenter
+                </strong>
+              </button>
             </>
           )}
         </div>

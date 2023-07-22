@@ -38,7 +38,7 @@ function ProfilePage() {
         // If deletion is successful, update the user state
         setDecodedToken(null);
         setToken(null);
-        alert("User deleted successfully");
+        alert("Utilisateur supprimé avec succès");
         window.location.href("/");
       })
       .catch((error) => {
@@ -63,19 +63,16 @@ function ProfilePage() {
       <AccountNav />
       {subpage === "profile" && (
         <>
-          <div className="text-center max-w-lg mx-auto mt-10">
-            
-              <p className=" text-base md:text-lg font-bold text-gray-600 ">
-                Welcome {decodedToken.name}{" "}
-              </p>
-             
-           
+          <div className="text-center mt-10 mx-auto px-4 max-w-screen-xl md:px-8">
+            <p className=" text-base md:text-lg font-bold text-gray-600 ">
+              Bienvenue {decodedToken.name}{" "}
+            </p>
 
             <button
               onClick={logout}
               className="primary max-w-sm my-8 hover:bg-primaryH"
             >
-              Logout
+              Se déconnecter
             </button>
             <button
               onClick={() => handleDeleteUser(decodedToken.id)}
@@ -83,7 +80,7 @@ function ProfilePage() {
             >
               <div className="mx-auto flex items-center space-x-2">
                 <FaTrash />
-                <span>Delete Account</span>
+                <span>Supprimer le compte</span>
               </div>
             </button>
           </div>

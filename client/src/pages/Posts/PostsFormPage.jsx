@@ -70,14 +70,14 @@ function PostsFormPage() {
       <AccountNav />
       <form
         onSubmit={savePost}
-        className="border border-gray-300 rounded-lg shadow-xl p-8"
+        className="border border-gray-300 rounded-lg shadow-xl p-8 mx-auto  max-w-screen-xl"
       >
         <h2 className="text-2xl font-bold mb-4 text-center text-primary">
-          {id ? "Editing" : "Creating"} a Post
+          {id ? "Modifier" : "Créer"} une Publication
         </h2>
         {preInput(
-          "Title",
-          "Title for your propety. should be short and catchy as in advertisement"
+          "Titre",
+          "Le titre de votre propriété doit être court et accrocheur comme dans la publicité"
         )}
         <input
           type="text"
@@ -85,13 +85,13 @@ function PostsFormPage() {
           onChange={(ev) => setTitle(ev.target.value)}
           placeholder="title, for example: I amm looking for a house"
         />
-        {preInput("Description", "Description of the post")}
+        {preInput("Description", "Description detailée")}
         <textarea
           value={description}
           onChange={(ev) => setDescription(ev.target.value)}
         />
 
-        <button className="primary my-4">Save</button>
+        <button className="primary my-4">Sauvegarder</button>
       </form>
     </div>
   );

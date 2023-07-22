@@ -15,17 +15,17 @@ const FlatsharingProperties = () => {
   }, []);
 
   return (
-    <div className="mt-12 grid gap-x-14 gap-y-24 ">
+    <div className="mt-36 grid gap-x-14 gap-y-24 mx-auto px-4 max-w-screen-xl md:px-8">
       <div className="text-center">
         <h1 className="text-3xl text-gray-700 font-semibold">
-          LDiscover Co-Living Opportunities with LA CASA's Flatsharing
-          Properties
+          Découvrez les opportunités de cohabitation avec les propriétés de
+          colocation de <span className="text-primary">LA CASA</span>
         </h1>
-        <p className="mt-6 text-gray-500">
-          Welcome to LA CASA's Flatsharing Properties page, your gateway to a
-          world of co-living opportunities. Here, you'll find a curated
-          selection of properties specifically designed for individuals seeking
-          shared living arrangements.
+        <p className="mt-6 text-gray-500 text-lg">
+          Bienvenue sur la page des propriétés de colocation de LA CASA, votre
+          porte d'entrée vers un monde d'opportunités de cohabitation. Ici, vous
+          trouverez une sélection de propriétés spécialement conçues pour les
+          personnes à la recherche d'un mode de vie partagé.
         </p>
       </div>
       <div className=" grid gap-x-14 gap-y-24 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">

@@ -16,21 +16,24 @@ const RentingProperties = () => {
   }, []);
 
   return (
-    <div className="mt-12 grid gap-x-14 gap-y-24 ">
+    <div className="mt-36 grid gap-x-14 gap-y-24 mx-auto px-4 max-w-screen-xl md:px-8">
       <div className="text-center">
         <h1 className="text-2xl text-gray-700 font-semibold">
-          Find Your Dream Rental Home with{" "}
+          Trouvez la maison de location de vos rêves avec{" "}
           <span className=" text-primary font-bold ">LA CASA</span>
         </h1>
-        <p className="mt-6 text-gray-500">
-          Welcome to LA CASA's Renting page, where you can embark on an exciting
-          journey to find your dream rental home.
+        <p className="mt-6 text-gray-500 text-lg">
+          Bienvenue sur la page Location de{" "}
+          <strong className=" text-primary">LA CASA</strong> , où vous pouvez
+          embarquer dans un voyage passionnant pour trouver la maison de vos
+          rêves.
         </p>
-        <p className="mt-3 text-gray-500">
-          Whether you're searching for a cozy apartment, a spacious house, or a
-          stylish condo, our platform offers a wide range of rental options to
-          suit your unique preferences. Browse through our curated listings,
-          each showcasing the finest properties available for rent. .
+        <p className="mt-3 text-gray-500 text-lg">
+          Que vous soyez à la recherche d'un appartement cosy, d'une maison
+          spacieuse ou d'un condo élégant, notre plateforme offre une large
+          gamme d'options de location pour répondre à vos préférences uniques.
+          Parcourez nos listes organisées, chacune présentant les plus belles
+          propriétés disponibles à la location.
         </p>
       </div>
       <div className=" grid gap-x-14 gap-y-24 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">

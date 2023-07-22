@@ -14,18 +14,19 @@ const ActivePosts = () => {
   }, []);
 
   return (
-    <div className="mt-12 grid gap-x-14 gap-y-24 ">
+    <div className="mt-36 mx-auto px-4 max-w-screen-xl md:px-8 ">
       <div className="text-center">
         <h1 className="text-3xl text-gray-700 font-semibold">
-          Discover a World of Opportunities with{" "}
+          Découvrez un monde d'opportunités avec{" "}
           <span className=" text-primary">LA CASA</span>
         </h1>
-        <p className="mt-6 text-gray-500">
-          Welcome to LA CASA's Posts Home Page, your gateway to a world of
-          exciting opportunities.{" "}
+        <p className="mt-6 text-gray-500 text-lg">
+          Bienvenue sur la page des publications de{" "}
+          <strong className=" text-primary">LA CASA</strong>, votre passerelle
+          vers un monde d'opportunités passionnantes.{" "}
         </p>
       </div>
-      <div className=" grid gap-x-14 gap-y-24 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">
+      <div className=" mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts?.length > 0 &&
           posts.map((post, index) => (
             <div
@@ -41,7 +42,7 @@ const ActivePosts = () => {
                   </h3>
 
                   <p className="mt-1 text-xs font-medium text-gray-600">
-                    By {post.creator.name}
+                    Par {post.creator.name}
                   </p>
                 </div>
 
@@ -60,28 +61,17 @@ const ActivePosts = () => {
 
               <dl className="mt-6 flex gap-4 sm:gap-6">
                 <div className="flex flex-col-reverse">
-                  <dt className="text-sm font-medium text-gray-600">
-                    Published
-                  </dt>
+                  <dt className="text-sm font-medium text-gray-600">Publiée</dt>
                   <dd className="text-xs text-gray-500">
-                    {new Date(post.createdAt).toLocaleString()}
+                    {new Date(post.createdAt).toLocaleDateString()}
                   </dd>
                 </div>
-
-                {/* <div className="flex flex-col-reverse">
-                  <dt className="text-sm font-medium text-gray-600">
-                    Reading time
-                  </dt>
-                  <dd className="text-xs text-gray-500">
-                    {moment(post.createdAt).fromNow()}
-                  </dd>
-                </div> */}
               </dl>
               <Link
                 to={"/post/" + post._id}
                 className="absolute bottom-7 right-3 px-3 py-1 text-white font-medium rounded-full bg-primary hover:bg-primaryH"
               >
-                Comments
+                Lire
               </Link>
             </div>
           ))}

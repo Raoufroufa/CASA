@@ -36,18 +36,21 @@ contractType=${filter.contractType}`
   }, [filter, isPriceSelected]);
 
   return (
-    <div className="mt-10 grid gap-x-14 gap-y-24 ">
+    <section className="mt-36 mx-auto px-4 max-w-screen-xl md:px-8">
       <div className="text-center">
         <h1 className="text-3xl text-gray-700 font-semibold">
-          Discover Your Perfect Home with{" "}
+          Découvrez votre maison parfaite avec{" "}
           <span className=" text-primary">LA CASA</span>
         </h1>
-        <p className="mt-6 text-gray-500">
-          Welcome to LA CASA, your ultimate destination for finding your perfect
-          home.{" "}
+        <p className="mt-6 text-gray-500 text-lg">
+          Bienvenue à <strong className=" text-primary">LA CASA</strong>, votre
+          destination ultime pour trouver votre maison idéale.{" "}
         </p>
       </div>
-      <div className="flex gap-2">
+
+      {/* Filter section */}
+      <div className="flex flex-col md:flex-row gap-2 mt-8">
+        {/* Category */}
         <select
           value={filter.category}
           onChange={(e) => {
@@ -56,51 +59,58 @@ contractType=${filter.contractType}`
               category: e.target.value,
             }));
           }}
+          className=" p-2.5   bg-white border  shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
         >
           <option value="" disabled>
-            select a category
+            Choisir une catégorie
           </option>
-          <option value="Flatsharing">flatsharing</option>
-          <option value="Renting">renting</option>
+          <option value="Flatsharing">Colocation</option>
+          <option value="Renting">Location</option>
         </select>
 
-        <select
-          value={isPriceSelected ? "custom" : filter.price}
-          onChange={(e) => {
-            const value = e.target.value;
-            if (value === "custom") {
-              setIsPriceSelected(true);
-            } else {
-              setFilter((prev) => ({
-                ...prev,
-                price: value,
-              }));
-              setIsPriceSelected(false);
-            }
-          }}
-        >
-          <option value="" disabled>
-            select a price
-          </option>
-          <option value="custom">Custom</option>
-          <option value="50000">$50000 or less</option>
-          <option value="20000">$20000 or less</option>
-          {/* Add more options as needed */}
-        </select>
-        {isPriceSelected && (
-          <input
-            type="text"
-            value={filter.price}
-            onChange={(e) => {
-              setFilter((prev) => ({
-                ...prev,
-                price: e.target.value,
-              }));
-            }}
-            placeholder="Enter a custom price"
-          />
-        )}
+        {/* Price */}
+        <div className="relative p-2.5  bg-white border shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600">
+          {isPriceSelected ? (
+            <input
+              type="text"
+              value={filter.price}
+              onChange={(e) => {
+                setFilter((prev) => ({
+                  ...prev,
+                  price: e.target.value,
+                }));
+              }}
+              placeholder="Entrez un prix personnalisé"
+              className=" p-2.5  bg-white border  shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
+            />
+          ) : (
+            <select
+              value={isPriceSelected ? "custom" : filter.price}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "custom") {
+                  setIsPriceSelected(true);
+                } else {
+                  setFilter((prev) => ({
+                    ...prev,
+                    price: value,
+                  }));
+                  setIsPriceSelected(false);
+                }
+              }}
+              className=" p-2.5  bg-white border  shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
+            >
+              <option value="" disabled>
+                Sélectionner un prix
+              </option>
+              <option value="custom">Votre prix</option>
+              <option value="50000">50000 DA ou moins</option>
+              <option value="20000">20000 DA ou moins</option>
+            </select>
+          )}
+        </div>
 
+        {/* Wilaya */}
         <select
           value={filter.wilaya}
           onChange={(e) => {
@@ -109,9 +119,10 @@ contractType=${filter.contractType}`
               wilaya: e.target.value,
             }));
           }}
+          className=" p-2.5  bg-white border shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
         >
           <option value="" disabled>
-            select a wilaya
+            sélectionner une wilaya
           </option>
           {wilayas.map((wilaya, i) => {
             return (
@@ -123,6 +134,7 @@ contractType=${filter.contractType}`
           })}
         </select>
 
+        {/* Commune */}
         <select
           value={filter.commune}
           onChange={(e) => {
@@ -131,9 +143,10 @@ contractType=${filter.contractType}`
               commune: e.target.value,
             }));
           }}
+          className=" p-2.5  bg-white border  shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
         >
           <option value="" disabled>
-            select a commune
+            sélectionner une commune
           </option>
           {communes.map((commune, i) => {
             return commune["wilaya_id"] === filter.wilaya ? (
@@ -144,6 +157,7 @@ contractType=${filter.contractType}`
           })}
         </select>
 
+        {/* Contract Type */}
         <select
           value={filter.contractType}
           onChange={(e) => {
@@ -153,16 +167,17 @@ contractType=${filter.contractType}`
               contractType: e.target.value,
             }));
           }}
+          className=" p-2.5  bg-white border  shadow-sm outline-none appearance-none focus:border-indigo-600 rounded-2xl my-2 py-2 px-3 text-gray-600"
         >
           <option value="" disabled>
-            select a contrat
+            Sélectionner un contrat
           </option>
           <option value="Annuel">Annuel</option>
           <option value="Mensuel">Mensuel</option>
         </select>
       </div>
 
-      <div className=" grid gap-x-14 gap-y-24 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 ">
+      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {properties?.length > 0 &&
           properties.map((property, index) => (
             <Link
@@ -184,14 +199,17 @@ contractType=${filter.contractType}`
                     <dt className="sr-only">Price</dt>
 
                     <dd className="text-sm text-gray-500">
-                      {property.price} DA
+                      {property.price} DA / Mois
                     </dd>
                   </div>
 
                   <div>
                     <dt className="sr-only">Address</dt>
 
-                    <dd className="font-medium">{property.location}</dd>
+                    <dd className="font-medium">
+                      {property.location}, <span>{property.commune}-</span>
+                      <span>{property.wilaya}</span>
+                    </dd>
                   </div>
                   <div>
                     <dt className="sr-only">Title</dt>
@@ -218,7 +236,7 @@ contractType=${filter.contractType}`
                     </svg>
 
                     <div className="mt-1.5 sm:mt-0">
-                      <p className="text-gray-500">Category</p>
+                      <p className="text-gray-500">Categorie</p>
 
                       <p className="font-medium">{property.category}</p>
                     </div>
@@ -227,21 +245,17 @@ contractType=${filter.contractType}`
                   <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                     <svg
                       className="h-4 w-4 text-primary"
+                      viewBox="0 0 64 64"
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
+                      fill="#30a2ff"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                      />
+                      <path d="M52 12H44V4a4 4 0 00-4-4h-8a4 4 0 00-4 4v8H12a4 4 0 00-4 4v32a4 4 0 004 4h40a4 4 0 004-4V16a4 4 0 00-4-4zm-4 34H16V18h32v28zm0-32H16v-4h32v4z"></path>
+                      <path d="M24 42h16v4H24z"></path>
                     </svg>
 
                     <div className="mt-1.5 sm:mt-0">
-                      <p className="text-gray-500">Contarct Type</p>
+                      <p className="text-gray-500">Contrat</p>
 
                       <p className="font-medium">{property.contractType}</p>
                     </div>
@@ -250,21 +264,21 @@ contractType=${filter.contractType}`
                   <div className="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
                     <svg
                       className="h-4 w-4 text-primary"
-                      xmlns="http://www.w3.org/2000/svg"
                       fill="none"
-                      viewBox="0 0 24 24"
                       stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                      />
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
                     </svg>
 
                     <div className="mt-1.5 sm:mt-0">
-                      <p className="text-gray-500">Time</p>
+                      <p className="text-gray-500">Publié</p>
 
                       <p className="font-medium">
                         {moment(property.createdAt).fromNow()}
@@ -276,7 +290,7 @@ contractType=${filter.contractType}`
             </Link>
           ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -11,15 +11,15 @@ function Layout() {
     scrollRef.current && scrollRef.current.scrollIntoView();
   }, [pathname]);
   return (
-    <div
-      className="py-4 px-4 md:px-8 flex flex-col min-h-screen mx-auto"
-      style={{ maxWidth: "90%" }}
-    >
+    <>
       <div ref={scrollRef}></div>
       <Header />
-      <Outlet />
+      <div className="px-4">
+        <Outlet />
+      </div>
+
       <Footer />
-    </div>
+    </>
   );
 }
 

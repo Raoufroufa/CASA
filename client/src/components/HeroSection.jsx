@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import Logo from "../images/Logo.png";
+import Illustration from "../images/Apartment rent-pana.png";
 
 const HeroSection = () => {
   return (
@@ -10,33 +10,36 @@ const HeroSection = () => {
     >
       <div className="space-y-4 flex-1 sm:text-center lg:text-left ">
         <h1 className="text-gray-500 font-bold text-4xl xl:text-5xl">
-          Find Your Perfect Home or Roommate
-          <span className="text-primary"> LA CASA</span>
+          Trouvez votre maison ou votre colocation idéale <br />
+          <span className="text-primary "> LA CASA</span>
         </h1>
-        <p className="text-gray-500 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
-          your ultimate destination for seamless flatsharing and house renting
-          experiences
+        <p className="text-gray-500 text-lg max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
+          Votre destination ultime pour des expériences de colocation et de
+          location de maison fluides. <br />
+          Débloquez un monde de découvertes ! Explorez les diverses maisons et
+          les publications captivantes partagées par d'autres utilisateurs sur
+          notre application.
         </p>
         <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
           <Link
             to="/properties"
-            className="px-7 py-3 w-full bg-white text-gray-500 text-lg text-center rounded-md shadow-md block sm:w-auto hover:bg-primaryH hover:text-white"
+            className=" border-2 border-gray-500 px-7 py-3 w-full bg-white font-bold text-gray-500 text-xl text-center rounded-md shadow-2x,l block sm:w-auto hover:bg-primaryH hover:text-white hover:border-primaryH"
           >
-            Properties
+            Maisons
           </Link>
           <Link
             to="/posts"
-            className="px-7 py-3 w-full bg-primaryH text-white text-lg text-center rounded-md block sm:w-auto hover:bg-white hover:text-gray-500"
+            className="px-7 py-3 w-full bg-primaryH font-bold text-white text-xl text-center rounded-md block sm:w-auto hover:bg-white hover:text-gray-500 hover:border-2 hover:border-gray-500"
           >
-            Posts
+            Publications
           </Link>
         </div>
       </div>
-      <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 ">
+      <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3 shadow-2xl">
         <img
-          src={Logo}
-          className="w-full mx-auto sm:w-10/12  lg:w-full shadow-2xl "
-          alt="LA CASA Logo"
+          src={Illustration}
+          className="w-full mx-auto sm:w-10/12  lg:w-full  "
+          alt="Illustration"
         />
       </div>
     </section>

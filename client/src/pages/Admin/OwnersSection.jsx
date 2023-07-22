@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext.jsx";
-import { FaTrash } from "react-icons/fa";
+// import { FaTrash } from "react-icons/fa";
 
 
 const Owners = () => {
@@ -75,10 +75,10 @@ const Owners = () => {
                     onClick={() => handleDeleteUser(owner._id)}
                     className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
                   >
-                    <div className="mx-auto flex items-center space-x-2">
-                      <FaTrash />
-                      <span>Delete</span>
-                    </div>
+                    {/* <div className="mx-auto flex items-center space-x-2"> */}
+                      {/* <FaTrash /> */}
+                      Delete
+                  
                   </button>
                 </td>
               </tr>

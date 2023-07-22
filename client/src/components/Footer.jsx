@@ -6,7 +6,7 @@ const Footer = () => {
   const footerNavs = [
     {
       to: "/terms",
-      name: "Terms",
+      name: "Conditions",
     },
     {
       to: "/faqs",
@@ -19,14 +19,15 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-20 w-full border-t border-gray-400 ">
+    <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-20 w-full border-t border-primary ">
       <div className="max-w-lg sm:mx-auto sm:text-center">
         <img src={logo} className="w-32 sm:mx-auto" alt="Logo" />
         <p className="leading-relaxed mt-2 text-[15px]">
-          Your happiness is our priority.
-          <br /> We bring you premium star utilities & services at the best
-          prices, and provide you with everything you need to improve your life
-          conditions and you find your dream home.
+          Votre bonheur est notre priorité.
+          <br /> Nous vous proposons des utilitaires et des services haut de
+          gamme aux meilleurs prix, et vous fournissons tout ce dont vous avez
+          besoin pour améliorer vos conditions de vie et vous trouver la maison
+          de vos rêves.
         </p>
       </div>
       <ul className="items-center justify-center mt-8 space-y-5 sm:flex sm:space-x-4 sm:space-y-0">
@@ -40,7 +41,7 @@ const Footer = () => {
       </ul>
       <div className="mt-8 items-center justify-between sm:flex">
         <div className="mt-4 sm:mt-0">
-          &copy; 2023 LA CASA All rights reserved.
+          &copy; 2023 LA CASA Tous droits réservés.
         </div>
         <div className="mt-6 sm:mt-0">
           <ul className="flex items-center space-x-4">
@@ -93,7 +94,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <style >{`
+      <style>{`
         .svg-icon path,
         .svg-icon polygon,
         .svg-icon rect {

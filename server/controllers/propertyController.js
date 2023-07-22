@@ -1,8 +1,11 @@
 import Property from "../mongodb/models/Property.js";
 import PropertyComment from "../mongodb/models/comment/PropertyComment.js";
-// import cloudinary from "cloudinary"
+import { transporter } from "../configNodemailer.js";
 
-// still to check it photos and multer
+import * as dotenv from "dotenv";
+dotenv.config();
+
+
 const createProperty = async (req, res) => {
   const {
     title,
@@ -16,6 +19,7 @@ const createProperty = async (req, res) => {
     photos,
   } = req.body;
   const creator = req.user.id; // Assuming the authenticated user is the Owner
+  const email = req.user.email;
 
   try {
     // Check if the authenticated user is an Owner
@@ -39,6 +43,15 @@ const createProperty = async (req, res) => {
     });
 
     await property.save();
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Confirmation de création",
+      text: "Propriété créée avec succès. Il est actuellement inactif.",
+    };
+
+    await transporter.sendMail(mailOptions);
 
     res.status(201).json({
       message: "Property created successfully. It is currently inactive.",
@@ -141,7 +154,7 @@ const updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const property = await Property.findById(id);
+    const property = await Property.findById(id).populate("creator");
     if (!property) {
       return res.status(404).json({ message: "Property not found" });
     }
@@ -176,6 +189,27 @@ const updateProperty = async (req, res) => {
       const { status } = req.body;
       if (status !== undefined) {
         property.status = status;
+        if (property.status === true) {
+          const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: property.creator.email,
+            subject: "Activation de propriété...",
+            text: "Votre propriété a été activée maintenant",
+          };
+          await transporter.sendMail(mailOptions);
+        } else {
+          const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: property.creator.email,
+            subject: "Désactivation de propriété...",
+            text: "Votre propriété a été désactivée ",
+          };
+          await transporter.sendMail(mailOptions);
+
+        }
+        
+
+        
       }
     } else {
       return res
@@ -199,7 +233,7 @@ const deleteProperty = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const property = await Property.findById(id);
+    const property = await Property.findById(id).populate("creator");
     if (!property) {
       return res.status(404).json({ message: "Property not found" });
     }
@@ -215,6 +249,14 @@ const deleteProperty = async (req, res) => {
 
     //   Delete the property
     await property.deleteOne();
+
+     const mailOptions = {
+       from: process.env.EMAIL_USER,
+       to: property.creator.email,
+       subject: "Suppression de propriété...",
+       text: "Votre propriété a été suprimée...",
+     };
+     await transporter.sendMail(mailOptions);
 
     res.status(200).json({ message: "Property deleted successfully" });
   } catch (err) {

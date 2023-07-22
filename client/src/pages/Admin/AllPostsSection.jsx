@@ -64,8 +64,8 @@ const AllPosts = () => {
                     {post.status ? "Active" : "Inactive"}
                   </span>
                 </td>
-                <td className="pr-6 py-4 whitespace-nowrap">
-                  {post.description}
+                <td className="pr-6 py-4 whitespace-nowrap ">
+                  {post.description.slice(0, 50) + "..."}
                 </td>
 
                 <td className="text-right whitespace-nowrap">

@@ -4,7 +4,6 @@ import AccountNav from "../../components/AccountNav.jsx";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import PropertyImg from "../../components/PropertyImg.jsx";
-// import { FaTrash } from "react-icons/fa";
 import { UserContext } from "../../context/UserContext.jsx";
 
 function PropertiesPage() {
@@ -20,21 +19,7 @@ function PropertiesPage() {
     }
   }, [decodedToken]);
 
-  // const handleDeleteProperty = (propertyId) => {
-  //   // Perform the deletion logic using the propertyId, send a DELETE request to the server
-  //   axios
-  //     .delete(`/properties/${propertyId}`)
-  //     .then(() => {
-  //       // If deletion is successful, update the properties state
-  //       setProperties((prevProperties) =>
-  //         prevProperties.filter((property) => property._id !== propertyId)
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       // Handle error case
-  //       console.error("Error deleting property:", error);
-  //     });
-  // };
+
 
   return (
     <div>
@@ -56,15 +41,18 @@ function PropertiesPage() {
               clipRule="evenodd"
             />
           </svg>
-          Add new property
+          Ajouter une nouvelle propriété
         </Link>
       </div>
-      <div className="mt-4">
+      <div className="mt-8 mx-auto px-4 max-w-screen-xl md:px-8">
         {properties.length > 0 &&
           properties.map((property) => (
             <article
               key={property._id}
-              className="rounded-xl border-2 border-blue-100 bg-white mt-2"
+              className=
+              {`rounded-xl border-2 bg-white mt-6 ${
+                    property.status ? "border-green-600" : "border-gray-600"
+                  }`}
             >
               <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
                 <Link
@@ -86,7 +74,7 @@ function PropertiesPage() {
                     </Link>
                   </h3>
 
-                  <p className="line-clamp-2 text-sm text-gray-700">
+                  <p className=" text-sm text-gray-700 line-clamp-2">
                     {property.description}
                   </p>
 
@@ -103,12 +91,12 @@ function PropertiesPage() {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="h-5 w-5"
+                        className="h-5 w-5 text-primary"
                       >
                         <path d="M13 3l-7 7 3 3 7-7 3 3-7 7H6v-6l7-7z" />
                       </svg>
 
-                      <p className="text-xs">Edit</p>
+                      <p className="text-xs">Modifier</p>
                     </Link>
 
                     <span className="hidden sm:block" aria-hidden="true">
@@ -116,7 +104,7 @@ function PropertiesPage() {
                     </span>
 
                     <p className="hidden sm:block sm:text-xs sm:text-gray-500">
-                      Posted by{" "}
+                      Posté par{" "}
                       <Link
                         to="/account"
                         className="font-medium underline hover:text-gray-700"
@@ -165,7 +153,7 @@ function PropertiesPage() {
                     </svg>
                   )}
 
-                  <span className="text-[10px] font-medium sm:text-xs">
+                  <span className="text-sm font-medium md:text-lg ">
                     {property.status ? "Active" : "Inactive"}
                   </span>
                 </strong>

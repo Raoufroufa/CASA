@@ -26,7 +26,7 @@ const SettingsProfile = () => {
       );
       localStorage.setItem("token", response.data.token);
       setToken(response.data.token);
-      alert("Your profile has been updated successful");
+      alert("Votre profil a été mis à jour avec succès");
     } catch (err) {
       console.error(err);
     }
@@ -35,28 +35,28 @@ const SettingsProfile = () => {
 
   return (
     <form
-      className="flex flex-col border border-gray-300 rounded-lg shadow-xl p-8"
+      className="flex flex-col tems-center justify-center border border-gray-300 rounded-lg shadow-xl p-8 mx-auto  max-w-screen-xl "
       onSubmit={handleSubmit}
     >
       <h2 className="text-2xl font-bold mb-4 text-primary text-center">
-        Edit your informations
+        Modifiez vos informations
       </h2>
 
-      <label className="text-xl mt-4 text-gray-600">Full-name</label>
+      <label className="text-xl mt-4 text-gray-600">Nom et prénom</label>
       <input
         type="text"
         placeholder={decodedToken.name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label className="text-xl mt-4 text-gray-600">Email</label>
+      <label className="text-xl mt-4 text-gray-600">E-mail</label>
       <input
         type="email"
         placeholder={decodedToken.email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <label className="text-xl mt-4 text-gray-600">Password</label>
+      <label className="text-xl mt-4 text-gray-600">Mot de passe</label>
       <input type="password" onChange={(e) => setPassword(e.target.value)} />
-      <button className="  primary mt-8 hover:bg-primaryH">Update</button>
+      <button className="  primary mt-8 hover:bg-primaryH">Modifier</button>
     </form>
   );
 };

@@ -27,7 +27,7 @@ function Header() {
           </NavLink>
 
           <div className="flex md:order-2 ">
-            { !!decodedToken ? (
+            {!!decodedToken ? (
               <Link
                 to="/account"
                 className="flex items-center border border-gray-300 rounded-full p-2  mt-2 mr-2"
@@ -41,7 +41,7 @@ function Header() {
                 to="/login"
                 className="text-white text-base md:text-lg  bg-primary hover:bg-primaryH focus:ring-4 focus:outline-none focus:ring-primaryR font-medium rounded-lg  px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Log in
+                Connecter
               </Link>
             )}
 
@@ -83,7 +83,7 @@ function Header() {
                   aria-current="page"
                 >
                   {" "}
-                  Home
+                  Accueil
                 </NavLink>
               </li>
               <li>
@@ -99,7 +99,7 @@ function Header() {
                   to="/#about"
                   className="block py-2 pl-3 pr-4 text-gray-600 text-xl rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  About us
+                  À propos 
                 </NavLink>
               </li>
               <li>

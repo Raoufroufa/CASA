@@ -30,7 +30,7 @@ const Contact = () => {
         </svg>
       ),
       contact: "Bab Ezzaour, Algiers, Algeria.",
-      title: "Our office",
+      title: "Notre bureau",
     },
     {
       icon: (
@@ -50,7 +50,7 @@ const Contact = () => {
         </svg>
       ),
       contact: "+213 (555) 000-000",
-      title: "Phone",
+      title: "Téléphone",
     },
     {
       icon: (
@@ -70,7 +70,7 @@ const Contact = () => {
         </svg>
       ),
       contact: "la-casa@gmail.com",
-      title: "Email",
+      title: "E-mail",
     },
   ];
 
@@ -89,19 +89,20 @@ const Contact = () => {
     };
 
   return (
-    <div id="contact">
-      <main className="py-14 bg-gray-50 shadow-xl mt-24">
+    <div id="contact" className="mt-40">
+      <main className="py-14 bg-gray-50 shadow-2xl  mx-auto max-w-screen-xl">
         <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
           <div className="max-w-xl space-y-3">
             <h3 className="text-primary text-3xl font-extrabold sm:text-4xl">
-              Contact
+              Contactez-nous
             </h3>
             <p className="text-gray-600 text-2xl font-semibold sm:text-3xl">
-              Let us know how we can help
+              Laissez-nous savoir comment nous pouvons vous aider
             </p>
             <p className=" text-gray-500">
-              We’re here to help and answer any question you might have, We look
-              forward to hearing from you .
+              Nous sommes là pour vous aider et répondre à toute question que
+              vous pourriez avoir, nous attendons avec impatience de vous
+              entendre.
             </p>
           </div>
           <div>
@@ -122,16 +123,17 @@ const Contact = () => {
         </div>
       </main>
 
-      <section className="py-14 max-w-screen-xl mt-6">
+      <section className="py-14  mt-6 mx-auto max-w-screen-xl ">
         <div className="relative overflow-hidden mx-4 px-4 py-14 rounded-xl bg-primary md:px-8 md:mx-8">
           <div className="relative z-10 max-w-xl mx-auto sm:text-center">
             <div className="space-y-3">
               <h3 className="text-3xl text-white font-bold">
-                Subscribe to our newsletter
+                Abonnez-vous à notre newsletter
               </h3>
               <p className="text-blue-100 leading-relaxed">
-                Stay up to date with the roadmap progress, announcements and
-                exclusive discounts feel free to sign up with your email.
+                Restez au courant des progrès de la feuille de route, des
+                annonces et des remises exclusives, n'hésitez pas à vous
+                inscrire avec votre e-mail.
               </p>
             </div>
             <div className="mt-6">
@@ -141,7 +143,7 @@ const Contact = () => {
               >
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Entrer votre Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="text-gray-500 w-full p-2 outline-none"
@@ -150,20 +152,18 @@ const Contact = () => {
                   type="submit"
                   className="p-2 px-3 rounded-lg font-medium text-white bg-primaryH hover:bg-blue-500 active:bg-blue-700 duration-150 outline-none shadow-md focus:shadow-none sm:px-4"
                 >
-                  Subscribe
+                  S'abonner
                 </button>
               </form>
               {message && (
-                <div className="mt-3  font-bold text-red-800 ">
-                  {message}
-                </div>
+                <div className="mt-3  font-bold text-red-800 ">{message}</div>
               )}
               <p className="mt-3 max-w-lg text-[15px] text-blue-100 sm:mx-auto">
-                No spam ever, we are care about the protection of your data.
-                Read our{" "}
+                Jamais de spam, nous nous soucions de la protection de vos
+                données. Lisez notre{" "}
                 <a href="/terms" className="font-extrabold hover:text-gray-800">
                   {" "}
-                  Terms{" "}
+                  Conditions{" "}
                 </a>
               </p>
             </div>

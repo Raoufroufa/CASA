@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext.jsx";
 import axios from "axios";
@@ -58,7 +58,7 @@ function PropertyPage() {
       // Make an API call to delete the property
       await axios.delete(`/properties/${property._id}`);
       // Redirect the user to a different page or display a success message
-      alert("Property deleted successfully!");
+      alert("Propriété supprimée avec succès !");
       if (decodedToken.role === "Admin") {
         navigate("/dashboard/properties");
       } else {
@@ -67,7 +67,7 @@ function PropertyPage() {
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to delete property:", error);
-      alert("Failed to delete property. Please try again.");
+      alert("Échec de la suppression de la propriété. Veuillez réessayer.");
     }
   }
 
@@ -85,11 +85,11 @@ function PropertyPage() {
       setCommentText("");
 
       // Display a success message to the user
-      alert("Comment submitted successfully!");
+      alert("Commentaire envoyé avec succès !");
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to submit comment:", error);
-      alert("Failed to submit comment. Please try again.");
+      alert("Échec de l'envoi du commentaire. Veuillez réessayer.");
     }
   }
 
@@ -102,18 +102,20 @@ function PropertyPage() {
       setComments(comments.filter((comment) => comment._id !== commentId));
 
       // Display a success message to the user
-      alert("Comment deleted successfully!");
+      alert("Commentaire supprimé avec succès !");
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to delete comment:", error);
-      alert("Failed to delete comment. Please try again.");
+      alert("Impossible de supprimer le commentaire. Veuillez réessayer.");
     }
   }
 
   async function handleEditComment(commentId) {
     try {
       // Prompt the user to enter the updated comment text
-      const updatedCommentText = prompt("Enter the updated comment:");
+      const updatedCommentText = prompt(
+        "Saisissez le commentaire mis à jour :"
+      );
       // Check if the user entered a comment text
       if (updatedCommentText) {
         // Make an API call to update the comment
@@ -125,42 +127,53 @@ function PropertyPage() {
         setRefetsh(!refetsh);
 
         // Display a success message to the user
-        alert("Comment submitted successfully!");
+        alert("Commentaire envoyé avec succès !");
       } else {
         // Display a message indicating that the comment text cannot be empty
-        alert("Comment text cannot be empty. Please try again.");
+        alert(
+          "Le texte du commentaire ne peut pas être vide. Veuillez réessayer."
+        );
       }
     } catch (error) {
       // Handle any errors that occurred during the API call
       console.error("Failed to submit comment:", error);
-      alert("Failed to submit comment. Please try again.");
+      alert("Échec de l'envoi du commentaire. Veuillez réessayer.");
     }
   }
+
+  const handleBack = () => {
+    // Use the window.history object to go back to the previous path
+    window.history.back();
+  };
 
   if (!property) return "";
 
   return (
-    <div className="mt-4 bg-white  relative p-4 ring ring-blue-50 sm:p-6 lg:p-8 rounded-xl">
+    <div
+      className={`mt-36 bg-white rounded-xl mx-auto px-4 max-w-screen-xl md:px-8 py-6 ring ${
+        property.status ? "ring-green-500" : "ring-gray-500"
+      }`}
+    >
       {decodedToken?.role !== "Admin" && (
-        <Link to="/account">
+        <button onClick={handleBack}>
           <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
-            Back
+            Retour
           </strong>
-        </Link>
+        </button>
       )}
       {decodedToken?.role === "Admin" && (
-        <div className="absolute top-0 right-0 mt-6 mr-6 flex flex-col space-y-4 ">
+        <div className="flex justify-end space-x-3  ">
           <button
             onClick={handleToggleStatus}
-            className="bg-primary hover:bg-primaryH text-white font-medium md:font-bold py-2 px-4 rounded shadow-xl"
+            className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white"
           >
-            {property.status ? "Deactivate" : "Activate"}
+            {property.status ? "Désactiver" : "Activer"}
           </button>
           <button
             onClick={handleDeleteProperty}
-            className="bg-red-500 hover:bg-red-600 text-white font-medium md:font-bold py-2 px-4 rounded shadow-xl"
+            className="rounded border border-red-500 bg-red-500 hover:bg-red-600 px-3 py-1.5 text-[14px] font-medium text-white"
           >
-            Delete
+            Supprimer
           </button>
         </div>
       )}
@@ -171,13 +184,13 @@ function PropertyPage() {
             onClick={handleDeleteProperty}
             className="rounded border border-red-500 bg-red-500 hover:bg-red-600 px-3 py-1.5 text-[14px] font-medium text-white"
           >
-            Delete
+            Supprimer
           </button>
         </div>
       )}
 
       <h3 className=" mt-2 text-lg font-medium sm:text-xl">
-        <div className="hover:underline">{property.title}</div>
+        <div className="hover:underline text-gray-700">{property.title}</div>
       </h3>
 
       <AddressLink>{property.location}</AddressLink>
@@ -194,15 +207,13 @@ function PropertyPage() {
           </div>
           <div className="my-4">
             <h2 className="text-lg font-medium sm:text-xl text-gray-600">
-              Category
+              Categorie
             </h2>
-            <p className="mt-1 text-sm text-gray-600">
-              {property.category}
-            </p>
+            <p className="mt-1 text-sm text-gray-600">{property.category}</p>
           </div>
           <div className="my-4">
             <h2 className="text-lg font-medium sm:text-xl text-gray-600">
-              Type of contarct
+              Type de contrat
             </h2>
             <p className="mt-1 text-sm text-gray-700">
               {property.contractType}
@@ -210,24 +221,24 @@ function PropertyPage() {
           </div>
         </div>
         <div className="mt-4 md:mt-16">
-          <div className="bg-white shadow p-2 rounded-2xl text-center ">
-            <p className="text-lg font-medium sm:text-xl text-gray-600">
-              Price
-            </p>
-            <p className="mt-1 text-sm  text-primary">
-              {property.price} DA / month
+          <div className="bg-white shadow-2xl p-2 rounded-2xl text-center ">
+            <p className="text-lg font-medium sm:text-xl text-gray-600">Prix</p>
+            <p className="mt-1 text-md  text-primary font-medium ">
+              {property.price} DA / Mois
             </p>
           </div>
         </div>
       </div>
-      <p className=" font-medium mt-3 text-gray-700 underline ">Comments:</p>
+      <p className=" font-medium mt-3 text-gray-700 underline ">
+        Commentaires:
+      </p>
       <ul className="mt-4 space-y-2">
         {comments?.length > 0 ? (
           <li>
             {comments.map((comment) => (
               <div
                 key={comment._id}
-                className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300 mt-2 relative"
+                className="block h-full rounded-lg border border-blue-400 p-3 hover:border-blue-300 mt-2 relative"
               >
                 <strong className="font-medium text-gray-600">
                   {comment.creator?.name}
@@ -271,7 +282,7 @@ function PropertyPage() {
           <li>
             <div className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300">
               <strong className="font-medium text-gray-600">
-                No comment yet.
+                Aucun commentaire pour l'instant.
               </strong>
             </div>
           </li>
@@ -280,18 +291,18 @@ function PropertyPage() {
 
       {decodedToken && decodedToken.role !== "Admin" && (
         <>
-          <button onClick={handleCommentSubmit} className="mt-4">
-            <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
-              Comment
-            </strong>
-          </button>
           <textarea
             rows={3}
-            placeholder="Write your comment..."
+            placeholder="Écrivez votre commentaire..."
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
-            className="block h-full rounded-lg border border-blue-100 p-3 hover:border-blue-300 mt-3"
+            className="block h-full rounded-lg border border-blue-400 p-3 hover:border-blue-300 mt-3"
           ></textarea>
+          <button onClick={handleCommentSubmit} className="mt-4">
+            <strong className="rounded border border-primary bg-primary hover:bg-primaryH px-3 py-1.5 text-[14px] font-medium text-white">
+              Commenter
+            </strong>
+          </button>
         </>
       )}
     </div>

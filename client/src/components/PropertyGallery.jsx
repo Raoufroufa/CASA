@@ -6,15 +6,12 @@ export default function PropertyGallery({ property }) {
 
  if (showAllPhotos) {
    return (
-     <div className="absolute inset-0  text-white min-h-screen z-40">
-       <div className="bg-gray-300 p-4">
+     <div className="  text-white min-h-screen z-40">
+       <div className=" shadow-2xl p-4">
          <div className="">
-           <h2 className="text-lg font-medium sm:text-xl break-words text-gray-700  md:text-3xl  sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight flex-grow">
-             Photos of {property.title}
-           </h2>
            <button
              onClick={() => setShowAllPhotos(false)}
-             className="fixed right-12 md:right-28 top-36 flex gap-1 p-2 rounded-2xl shadow shadow-blue-200 bg-white text-primary text-xs md:text-base "
+             className="fixed right-6 md:right-36 flex gap-1 p-2 rounded-2xl shadow shadow-blue-200 bg-white text-primary text-xs md:text-base "
            >
              <svg
                xmlns="http://www.w3.org/2000/svg"
@@ -28,13 +25,13 @@ export default function PropertyGallery({ property }) {
                  clipRule="evenodd"
                />
              </svg>
-             Close photos
+             Fermer les photos
            </button>
          </div>
          <div className="p-2 grid gap-2">
            {property?.photos?.length > 0 &&
              property.photos.map((photo, index) => (
-               <div key={index} className="">
+               <div key={index} className="mt-4">
                  <Image
                    src={photo}
                    alt=""
@@ -101,7 +98,7 @@ export default function PropertyGallery({ property }) {
             clipRule="evenodd"
           />
         </svg>
-        Show more photos
+        Afficher plus de photos
       </button>
     </div>
   );

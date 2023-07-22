@@ -18,21 +18,6 @@ function PostsPage() {
     }
   }, [decodedToken]);
 
-  //  const handleDeletePost = (postId) => {
-  //    // Perform the deletion logic using the postId, send a DELETE request to the server
-  //    axios
-  //      .delete(`/posts/${postId}`)
-  //      .then(() => {
-  //        // If deletion is successful, update the posts state
-  //        setPosts((prevPosts) =>
-  //          prevPosts.filter((post) => post._id !== postId)
-  //        );
-  //      })
-  //      .catch((error) => {
-  //        // Handle error case
-  //        console.error("Error deleting post:", error);
-  //      });
-  //  };
 
 
   return (
@@ -55,15 +40,17 @@ function PostsPage() {
               clipRule="evenodd"
             />
           </svg>
-          Add new post
+          Ajouter une publication
         </Link>
       </div>
-      <div className="mt-4">
+      <div className="mt-8 mx-auto px-4 max-w-screen-xl md:px-8">
         {posts.length > 0 &&
           posts.map((post) => (
             <article
               key={post._id}
-              className="rounded-xl border-2 border-blue-100 bg-white mt-2"
+              className={`rounded-xl border-2 bg-white mt-6 ${
+                post.status ? "border-green-600" : "border-gray-600"
+              }`}
             >
               <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
                 <div>
@@ -95,7 +82,7 @@ function PostsPage() {
                         <path d="M13 3l-7 7 3 3 7-7 3 3-7 7H6v-6l7-7z" />
                       </svg>
 
-                      <p className="text-xs">Edit</p>
+                      <p className="text-xs">Modifier</p>
                     </Link>
 
                     <span className="hidden sm:block" aria-hidden="true">
@@ -103,7 +90,7 @@ function PostsPage() {
                     </span>
 
                     <p className="hidden sm:block sm:text-xs sm:text-gray-500">
-                      Posted by{" "}
+                      Posté par{" "}
                       <Link
                         to="/account"
                         className="font-medium underline hover:text-gray-700"
@@ -152,7 +139,7 @@ function PostsPage() {
                     </svg>
                   )}
 
-                  <span className="text-[10px] font-medium sm:text-xs">
+                  <span className="text-sm font-medium md:text-lg">
                     {post.status ? "Active" : "Inactive"}
                   </span>
                 </strong>

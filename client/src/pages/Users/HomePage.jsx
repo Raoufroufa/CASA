@@ -10,7 +10,7 @@ function HomePage() {
  return (
    <>
      <HeroSection />
-     <Categories id="categories" />
+     <Categories  />
      <AboutUs />
      <Contact />
    </>

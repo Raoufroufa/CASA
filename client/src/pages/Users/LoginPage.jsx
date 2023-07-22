@@ -21,7 +21,7 @@ function LoginPage() {
       localStorage.setItem("token", token);
       setToken(token);
       setReady(true);
-      alert("Login successful");
+      alert("Connexion réussie");
       setRedirect(true);
     } catch (e) {
       if (e.code === "ERR_BAD_REQUEST") {
@@ -31,7 +31,7 @@ function LoginPage() {
         // Handle other types of errors
         console.log("An error occurred:", e.message);
       }
-      alert("Login failed");
+      alert("Échec de la connexion");
     }
       
 
@@ -43,36 +43,44 @@ function LoginPage() {
   }
 
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-center px-4 ">
-      <div className="max-w-sm w-full text-gray-600  space-y-5 ">
-        <div className="text-center pb-8">
+    <main className="w-full h-screen flex flex-col items-center justify-center  ">
+      <div className="max-w-sm w-full text-gray-600  space-y-5 shadow-2xl p-4 ">
+        <div className="text-center pb-6">
           <img src={Logo} width={150} className="mx-auto" alt="Casa logo" />
-          <div className="mt-5">
-            <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
-              Log in to your account
-            </h3>
-          </div>
+
+          <h3 className="text-gray-800 text-lg  font-bold ">
+            Connectez-vous à votre compte
+          </h3>
+          <p className="text-center mt-2">
+            Vous n'avez pas de compte?{" "}
+            <Link
+              to={"/register"}
+              className="font-medium text-primary hover:text-primaryH"
+            >
+              S'inscrire
+            </Link>
+          </p>
         </div>
 
         <form onSubmit={handleLoginSubmit} className="space-y-5">
           <div>
-            <label className="font-medium">Email</label>
+            <label className="font-medium">E-mail</label>
             <input
               type="email"
               required
               className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-primaryH shadow-sm rounded-lg"
-              placeholder="your@email.com"
+              placeholder="votre@email.com"
               value={email}
               onChange={(ev) => setEmail(ev.target.value)}
             />
           </div>
           <div>
-            <label className="font-medium">Password</label>
+            <label className="font-medium">Mot de passe</label>
             <input
               type="password"
               required
               className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-primaryH shadow-sm rounded-lg"
-              placeholder="your password"
+              placeholder="votre mot de passe"
               value={password}
               onChange={(ev) => setPassword(ev.target.value)}
             />
@@ -82,23 +90,13 @@ function LoginPage() {
               to="/forgot-password"
               className="text-center text-primary hover:text-primaryH"
             >
-              Forgot password?
+              Mot de passe oublié?
             </Link>
           </div>
           <button className="w-full px-4 py-2 text-white font-medium bg-primary hover:bg-primaryH active:bg-primaryR rounded-lg duration-150">
-            Sign in
+            Se connecter
           </button>
         </form>
-       
-        <p className="text-center">
-          Don't have an account?{" "}
-          <Link
-            to={"/register"}
-            className="font-medium text-primary hover:text-primaryH"
-          >
-            Sign up
-          </Link>
-        </p>
       </div>
     </main>
   );

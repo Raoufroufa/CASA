@@ -19,8 +19,8 @@ const AboutUs = () => {
            />
          </svg>
        ),
-       title: "Fast Refresh",
-       desc: "Fast Refresh ensures that any updates or changes you make to your profile, property listings, or roommate preferences are instantly reflected on the app. Whether you're uploading new photos, updating your description, or modifying your search criteria, you can see the results in real-time.",
+       title: "Actualisation rapide",
+       desc: "L'actualisation rapide garantit que toutes les mises à jour ou modifications que vous apportez à votre profil, aux listes de propriétés ou aux préférences de colocataire sont instantanément répercutées sur l'application. Que vous téléchargiez de nouvelles photos, mettiez à jour votre description ou modifiiez vos critères de recherche, vous pouvez voir les résultats en temps réel.",
      },
      {
        icon: (
@@ -39,8 +39,8 @@ const AboutUs = () => {
            />
          </svg>
        ),
-       title: "Analytics",
-       desc: "Gain valuable insights and make data-driven decisions with LA CASA's powerful Analytics feature. With Analytics, you can access comprehensive reports and metrics that provide a deeper understanding of your flatsharing and house renting activities. ",
+       title: "Analytique",
+       desc: "Obtenez des informations précieuses et prenez des décisions basées sur les données grâce à la puissante fonctionnalité d'analyse de LA CASA. Avec Analytics, vous pouvez accéder à des rapports et des mesures complets qui permettent de mieux comprendre vos activités de colocation et de location de maison. ",
      },
      {
        icon: (
@@ -59,8 +59,8 @@ const AboutUs = () => {
            />
          </svg>
        ),
-       title: "Datacenter security",
-       desc: "We prioritize the security and protection of your data. Our state-of-the-art datacenters are equipped with top-notch security measures to ensure the confidentiality and integrity of your personal information. ",
+       title: "Sécurité du centre de données",
+       desc: "Nous privilégions la sécurité et la protection de vos données. Nos centres de données à la fine pointe de la technologie sont équipés de mesures de sécurité de premier ordre pour assurer la confidentialité et l'intégrité de vos renseignements personnels. ",
      },
      {
        icon: (
@@ -79,8 +79,8 @@ const AboutUs = () => {
            />
          </svg>
        ),
-       title: "Build on your terms",
-       desc: "LA CASA empowers you to build your flatsharing and house renting journey on your own terms. With our user-friendly app, you have the flexibility and control to tailor your experience according to your preferences and objectives.",
+       title: "Construisez selon vos conditions",
+       desc: "LA CASA vous permet de construire votre parcours de colocation et de location de maison selon vos propres conditions. Grâce à notre application conviviale, vous avez la flexibilité et le contrôle nécessaires pour personnaliser votre expérience en fonction de vos préférences et de vos objectifs.",
      },
      {
        icon: (
@@ -99,8 +99,8 @@ const AboutUs = () => {
            />
          </svg>
        ),
-       title: "Safe to use",
-       desc: "We prioritize your safety and implement strict verification processes to foster a secure and reliable community.",
+       title: "Sûr à utiliser",
+       desc: "Nous accordons la priorité à votre sécurité et mettons en œuvre des processus de vérification stricts pour favoriser une communauté sécurisée et fiable.",
      },
      {
        icon: (
@@ -120,50 +120,61 @@ const AboutUs = () => {
          </svg>
        ),
        title: "Flexible",
-       desc: "Our app is designed to provide you with maximum flexibility throughout your journey. Whether you're a homeowner or a tenant, LA CASA offers a range of flexible options to accommodate your needs.",
+       desc: "Notre application est conçue pour vous offrir un maximum de flexibilité tout au long de votre voyage. Que vous soyez propriétaire ou locataire, LA CASA offre une gamme d'options flexibles pour répondre à vos besoins.",
      },
    ];
 
     return (
-      <section className="py-14 mb-10" id="about">
+      <section
+        className="py-14 mb-10 mx-auto max-w-screen-xl  px-4 items-center lg:flex md:px-8"
+        id="about"
+      >
         <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
-          <div className="relative max-w-2xl mx-auto sm:text-center ">
+          <div className="relative max-w-2xl mx-auto sm:text-center  ">
             <div className="relative z-10 mt-14">
               <h3 className="text-gray-500 text-3xl font-extrabold sm:text-4xl">
-                About us
+                À propos de nous
               </h3>
-              <p className="mt-6 text-gray-500">
-                At LA CASA, we believe that finding a home or compatible
-                roommates should be an exciting and stress-free journey. Our
-                mission is to revolutionize the way people connect and discover
-                their ideal living spaces, whether it's finding a cozy apartment
-                or seeking trustworthy roommates for flatsharing. We're
-                dedicated to making the process simple and enjoyable for both
-                tenants and homeowners.
+              <p className="mt-6 text-gray-500 text-lg">
+                Chez <strong className="text-primary ">LA CASA</strong>, nous
+                croyons que trouver un logement ou des colocataires compatibles
+                devrait être un voyage passionnant et sans stress. Notre mission
+                est de révolutionner la façon dont les gens se connectent et
+                découvrent leurs espaces de vie idéaux, qu'il s'agisse de
+                trouver un appartement confortable ou de rechercher des
+                colocataires de confiance pour une colocation. Nous nous
+                engageons à rendre le processus simple et agréable pour les
+                locataires et les propriétaires.
               </p>
-              <p className="mt-3 text-gray-500">
-                With LA CASA, you can effortlessly search for your dream home or
-                explore flatsharing opportunities that suit your lifestyle. Our
-                user-friendly app connects you with a diverse community of
-                individuals seeking roommates, fostering a sense of belonging
-                and shared experiences. Whether you're looking to rent out a
-                spare room or find the perfect flatmate, we're here to
-                facilitate connections and create harmonious living
-                arrangements.
+              <p className="mt-3 text-gray-500 text-lg">
+                Avec <strong className="text-primary ">LA CASA</strong>, vous
+                pouvez facilement rechercher la maison de vos rêves ou explorer
+                les opportunités de colocation qui correspondent à votre style
+                de vie. Notre application conviviale vous connecte à une
+                communauté diversifiée de personnes à la recherche de
+                colocataires, favorisant un sentiment d'appartenance et des
+                expériences partagées. Que vous cherchiez à louer une chambre
+                d'amis ou à trouver le colocataire idéal, nous sommes là pour
+                faciliter les connexions et créer des conditions de vie
+                harmonieuses.
               </p>
-              <p className="mt-3 text-gray-500">
-                We prioritize safety, trust, and transparency, implementing
-                stringent verification processes to ensure a secure environment
-                for all users. LA CASA provides a streamlined platform where you
-                can post your property or create roommate profiles, browse
-                through compatible options, and connect with potential roommates
-                or tenants seamlessly.
+              <p className="mt-3 text-gray-500 text-lg">
+                Nous accordons la priorité à la sécurité, à la confiance et à la
+                transparence, en mettant en œuvre des processus de vérification
+                rigoureux pour garantir un environnement sécurisé pour tous les
+                utilisateurs. <strong className="text-primary ">LA CASA</strong>{" "}
+                fournit une plate-forme simplifiée où vous pouvez publier votre
+                propriété ou créer des profils de colocataires, parcourir les
+                options compatibles et vous connecter avec des colocataires ou
+                des locataires potentiels de manière transparente.
               </p>
-              <p className="mt-3 text-gray-500">
-                Join LA CASA today and embark on an exciting journey to find not
-                only your perfect home but also the ideal roommates for an
-                enriching flatsharing experience. Let us redefine the way you
-                discover your ideal living space and create lasting connections.
+              <p className="mt-3 text-gray-500 text-lg">
+                Rejoignez <strong className="text-primary ">LA CASA</strong>{" "}
+                aujourd'hui et embarquez dans un voyage passionnant pour trouver
+                non seulement votre maison idéale, mais aussi les colocataires
+                idéaux pour une expérience de colocation enrichissante.
+                Laissez-nous redéfinir la façon dont vous découvrez votre espace
+                de vie idéal et créons des liens durables.
               </p>
             </div>
             <div
@@ -174,12 +185,12 @@ const AboutUs = () => {
               }}
             ></div>
           </div>
-          <div className="relative mt-12">
+          <div className="relative mt-20">
             <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((item, idx) => (
                 <li
                   key={idx}
-                  className="bg-white space-y-3 p-4 border rounded-lg"
+                  className="bg-white space-y-3 p-4 border border-gray-200 shadow-xl rounded-lg mt-8"
                 >
                   <div className="text-primary pb-3">{item.icon}</div>
                   <h4 className="text-lg text-gray-800 font-semibold">
