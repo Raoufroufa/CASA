@@ -95,38 +95,6 @@ const getCommentsByPropertyId = async (req, res) => {
   }
 };
 
-// Controller for getting a comment with his replies
-// const getCommentWithReplies = async (req, res) => {
-//   try {
-//     const commentId = req.params.id;
-
-//     // Find the comment by its ID
-//     const comment = await Comment.findById(commentId);
-
-//     if (!comment) {
-//       return res.status(404).json({ message: "Comment not found" });
-//     }
-
-//     // Find the replies for the comment
-//     const replies = await Comment.find({ parentCommentId: commentId });
-
-//     res.status(200).json({ comment, replies });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-// Controller for getting all comments
-// const getAllComments = async (req, res) => {
-//   try {
-//     // Fetch all comments
-//     const comments = await Comment.find({});
-
-//     res.status(200).json(comments);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
 
 // Controller for comment's creator to update his comment status
 const updateComment = async (req, res) => {
@@ -192,8 +160,6 @@ export {
   createComment,
   getCommentsByPostId,
   getCommentsByPropertyId,
-  // getCommentWithReplies,
-  // getAllComments,
   updateComment,
   deleteComment,
 };

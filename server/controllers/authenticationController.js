@@ -173,7 +173,7 @@ async function resetPassword(req, res) {
     await transporter.sendMail(mailOptions);
 
     res.status(200).json({
-      message: "User registered successfully",
+      message: "Password rested successfully",
       token,
       user: userWithoutPassword,
     });

@@ -10,7 +10,7 @@ dotenv.config();
 
 const createPost = async (req, res) => {
   const { title, description } = req.body;
-  const creator = req.user.id; // Assuming the authenticated user is the client
+  const creator = req.user.id; 
   const email = req.user.email;
 
   try {

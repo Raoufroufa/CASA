@@ -18,7 +18,7 @@ router
   .route("/")
   // Client create a post
   .post(auth, createPost)
-  // Admin and current Client get all the posts that are active and not currently active.
+  // Admin get all the posts that are active and not currently active.
   .get(auth, getAllPosts);
 
 // Fetch all the posts that are active and not currently active for the client who created these posts
@@ -31,7 +31,7 @@ router
   .route("/:id")
   // Admin, Owner and Client  get a post details
   .get(getPostDetail)
-  //Client updates a post details
+  //update a post details
   .patch(auth, updatePost)
   //Admin and Client delete a post
   .delete(auth, deletePost);

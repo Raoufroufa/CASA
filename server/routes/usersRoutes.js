@@ -8,7 +8,7 @@ import {
   updateUser,
   deleteUser,
   subscribeToNewsletter,
-  // unsubscribeFromNewsletter,
+  
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -25,9 +25,6 @@ router.route("/:id")
     .delete(deleteUser);
 
 router.route("/subscribe").post(subscribeToNewsletter);
-
-// router.route("/unsubscribe").post(unsubscribeFromNewsletter);
-
 
     
 export default router;

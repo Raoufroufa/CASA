@@ -19,11 +19,8 @@ import dashboardRouter from "./routes/dashboardRoutes.js";
 
 const app = express();
 
-// ===
-
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-
 
 app.use(
   cors({
@@ -41,6 +38,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const photosMiddleware = multer({ dest: "uploads" });
+
 app.post("/upload", photosMiddleware.array("photos", 10), async (req, res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
@@ -63,11 +61,11 @@ app.use("/users", auth, userRouter);
 
 app.use("/properties", propertiesRouter);
 
-app.use("/posts",  postsRouter);
+app.use("/posts", postsRouter);
 
 app.use("/comments", commentsRouter);
 
-app.use("/dashboard",auth,  dashboardRouter);
+app.use("/dashboard", auth, dashboardRouter);
 
 // start mongodb server
 const startServer = async () => {

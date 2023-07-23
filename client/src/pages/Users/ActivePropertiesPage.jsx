@@ -21,17 +21,12 @@ const ActiveProperties = () => {
   });
 
   useEffect(() => {
-    console.log(filter.price);
     axios
       .get(
-        `/properties/home?category=${filter.category}&${
-          isPriceSelected ? "customPrice" : "price"
-        }=${filter.price}&wilaya=${filter.wilaya}&commune=${filter.commune}&
-contractType=${filter.contractType}`
+        `/properties/home?category=${filter.category}&${isPriceSelected ? "customPrice" : "price"}=${filter.price}&wilaya=${filter.wilaya}&commune=${filter.commune}&contractType=${filter.contractType}`
       )
       .then((response) => {
         setProperties(response.data);
-        console.log(response.data);
       });
   }, [filter, isPriceSelected]);
 
@@ -178,7 +173,7 @@ contractType=${filter.contractType}`
       </div>
 
       <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {properties?.length > 0 &&
+        {properties?.length > 0 ? (
           properties.map((property, index) => (
             <Link
               key={index}
@@ -288,7 +283,10 @@ contractType=${filter.contractType}`
                 </div>
               </div>
             </Link>
-          ))}
+          ))
+        ) : (
+          <div className="text-3xl text-red-600 font-semibold">Pas du résultat</div>
+        )}
       </div>
     </section>
   );

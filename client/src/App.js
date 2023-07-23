@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { Route, Routes } from "react-router-dom";
 
 import { UserContextProvider } from "./context/UserContext.jsx";
@@ -95,8 +95,10 @@ function App() {
           <Route path="/faqs" element={<FaqsPage />} />
         </Route>
         {/* Admin dash-board */}
+
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+
         <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="login" element={<AdminLoginPage />} />
           <Route path="forgot-password" element={<ForgetPasswordPage />} />
           <Route path="profile" element={<AdminProfile />} />
           <Route path="statics" element={<DashboardStatics />} />

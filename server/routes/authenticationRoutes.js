@@ -7,7 +7,7 @@ import {
 } from "../controllers/authenticationController.js";
 
 import * as dotenv from "dotenv";
-// import auth from "../middlewares/authentication.js";
+
 
 dotenv.config();
 

@@ -18,7 +18,7 @@ const createProperty = async (req, res) => {
     contractType,
     photos,
   } = req.body;
-  const creator = req.user.id; // Assuming the authenticated user is the Owner
+  const creator = req.user.id; 
   const email = req.user.email;
 
   try {
@@ -90,22 +90,22 @@ const getHomeProperties = async (req, res) => {
   req.query.wilaya && (filter.wilaya = req.query.wilaya);
   req.query.commune && (filter.commune = req.query.commune);
   req.query.contractType && (filter.contractType = req.query.contractType);
-  // req.query.price && (filter.price = req.query.price);
+  
   if (!!req.query.price || !!req.query.customPrice) {
     if (req.query.customPrice) {
       // Handle custom price range
       const customPrice = req.query.customPrice;
       if (customPrice) {
+        // Filter for customPrice  or less
         filter.price = { $lte: Number(customPrice) };
       }
     } else if (req.query.price === "50000") {
-      // Filter for $50000 or less
+      // Filter for 50000 DA or less
       filter.price = { $lte: 50000 };
     } else if (req.query.price === "20000") {
-      // Filter for $20000 or less
+      // Filter for 20000 DA or less
       filter.price = { $lte: 20000 };
     }
-    // Add more price range filters as needed
   }
 
   try {
@@ -207,8 +207,6 @@ const updateProperty = async (req, res) => {
           await transporter.sendMail(mailOptions);
 
         }
-        
-
         
       }
     } else {

@@ -11,7 +11,7 @@ dotenv.config();
 
 const getAllUsers = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id); // Assuming you have an adminId in the request
+    const user = await User.findById(req.user.id); 
     if (user.role != "Admin") {
       return res.status(404).json({ message: "You aren't autherized" });
     }
@@ -28,7 +28,7 @@ const getAllUsers = async (req, res) => {
 
 const getAllOwners = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id); // Assuming you have an adminId in the request
+    const user = await User.findById(req.user.id); 
     if (user.role != "Admin") {
       return res.status(404).json({ message: "You aren't autherized" });
     }
@@ -42,7 +42,7 @@ const getAllOwners = async (req, res) => {
 
 const getAllClients = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id); // Assuming you have an adminId in the request
+    const user = await User.findById(req.user.id); 
 
     if (user.role != "Admin") {
       return res.status(404).json({ message: "You aren't autherized" });
@@ -57,16 +57,11 @@ const getAllClients = async (req, res) => {
 const getUserInfoById = async (req, res) => {
   try {
     const { id } = req.params;
-    // const requestingUserRole = req.user.role;
+    
     
     const user = await User.findById(id).select("-password");
     
     if (user) {
-      // if (user.role === "Admin" && requestingUserRole !== "Admin") {
-      //   return res.status(403).json({
-      //     message: "Access denied. This information is confidential.",
-      //   });
-      // } else {
         res.status(201).json(user);
     } else {
       res.status(404).json({ message: "User not found" });
@@ -135,7 +130,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-// still to check
+
 const deleteUser = async (req, res) => {
   const { id } = req.params;
 
@@ -190,10 +185,10 @@ const subscribeToNewsletter = async (req, res) => {
 
     // Send a confirmation email to the subscriber
     const mailOptions = {
-      from: process.env.EMAIL_USER, 
+      from: process.env.EMAIL_USER,
       to: email,
-      subject: "Subscription Confirmation",
-      text: "Thank you for subscribing to our newsletter!",
+      subject: "Confirmation d'abonnement",
+      text: "Merci de vous être abonné à notre newsletter!",
     };
 
     await transporter.sendMail(mailOptions);
@@ -248,6 +243,5 @@ export {
   updateUser,
   deleteUser,
   subscribeToNewsletter,
-  // unsubscribeFromNewsletter,
   sendNewsletter,
 };
