@@ -1,0 +1,1 @@
+# La Casa c’est une plateforme Web pour la location et la colocation, elle conçue pour fournir une interface simplifiée, efficace et conviviale qui permet aux utilisateurs:  > Louer une maisons.  > Faire une colocation.  > Louer leur biens.
