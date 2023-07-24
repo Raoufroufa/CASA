@@ -33,7 +33,7 @@ function Header() {
                 className="flex items-center border border-gray-300 rounded-full p-2  mt-2 mr-2"
               >
                 <div className="w-6 h-6 md:w-10 md:h-10 bg-primary text-white flex items-center justify-center rounded-full">
-                  {decodedToken.name.charAt(0)}
+                  {decodedToken.name.charAt(0).toUpperCase()}
                 </div>
               </Link>
             ) : (
@@ -99,7 +99,7 @@ function Header() {
                   to="/#about"
                   className="block py-2 pl-3 pr-4 text-gray-600 text-xl rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                 >
-                  À propos 
+                  À propos
                 </NavLink>
               </li>
               <li>

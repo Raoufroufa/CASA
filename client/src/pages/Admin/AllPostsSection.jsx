@@ -49,6 +49,7 @@ const AllPosts = () => {
                 <td className="pr-6 py-4 whitespace-nowrap">{post.title}</td>
                 <td className="pr-6 py-4 whitespace-nowrap">
                   {post.creator.name}
+                  
                 </td>
                 <td className="pr-6 py-4 whitespace-nowrap">
                   {new Date(post.createdAt).toLocaleString()}

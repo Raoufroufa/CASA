@@ -129,10 +129,10 @@ function PostsPage() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="h-4 w-4"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
                     >
                       <circle cx="12" cy="12" r="10" />
                       <path d="M16 12l-4 4-4-4M12 8v8" />

@@ -39,7 +39,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 const photosMiddleware = multer({ dest: "uploads" });
 
-app.post("/upload", photosMiddleware.array("photos", 10), async (req, res) => {
+app.post("/upload", photosMiddleware.array("photos", 15), async (req, res) => {
   const uploadedFiles = [];
   for (let i = 0; i < req.files.length; i++) {
     const { path, originalname } = req.files[i];

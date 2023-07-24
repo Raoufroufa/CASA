@@ -59,7 +59,7 @@ const getAllPosts = async (req, res) => {
   try {
     if (req.user.role === "Admin") {
       // Fetch all posts for Admin (active and non-active)
-      const allPosts = await Post.find({});
+      const allPosts = await Post.find({}).populate("creator", "name");
       res.status(200).json(allPosts);
     }  else {
       res.status(401).json({ message: "Unauthorized access" });
