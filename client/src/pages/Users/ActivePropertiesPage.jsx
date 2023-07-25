@@ -23,7 +23,11 @@ const ActiveProperties = () => {
   useEffect(() => {
     axios
       .get(
-        `/properties/home?category=${filter.category}&${isPriceSelected ? "customPrice" : "price"}=${filter.price}&wilaya=${filter.wilaya}&commune=${filter.commune}&contractType=${filter.contractType}`
+        `/properties/home?category=${filter.category}&${
+          isPriceSelected ? "customPrice" : "price"
+        }=${filter.price}&wilaya=${filter.wilaya}&commune=${
+          filter.commune
+        }&contractType=${filter.contractType}`
       )
       .then((response) => {
         setProperties(response.data);
@@ -233,7 +237,11 @@ const ActiveProperties = () => {
                     <div className="mt-1.5 sm:mt-0">
                       <p className="text-gray-500">Categorie</p>
 
-                      <p className="font-medium">{property.category}</p>
+                      <p className="font-medium">
+                        {property.category === "Renting"
+                          ? "Location"
+                          : "Colocation"}
+                      </p>
                     </div>
                   </div>
 
@@ -285,7 +293,9 @@ const ActiveProperties = () => {
             </Link>
           ))
         ) : (
-          <div className="text-3xl text-red-600 font-semibold">Pas du résultat</div>
+          <div className="text-3xl text-red-600 font-semibold">
+            Pas du résultat
+          </div>
         )}
       </div>
     </section>
