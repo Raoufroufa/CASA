@@ -94,7 +94,9 @@ const RentingProperties = () => {
                     <div className="mt-1.5 sm:mt-0">
                       <p className="text-gray-500">Category</p>
 
-                      <p className="font-medium">{property.category}</p>
+                      <p className="font-medium">
+                        {property.category === "Renting" && "Location"}
+                      </p>
                     </div>
                   </div>
 

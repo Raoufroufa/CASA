@@ -188,7 +188,7 @@ function PropertiesFormPage() {
           />
         </div>
 
-        {preInput("Photos", "plus = mieux")}
+        {preInput("Photos", "plus = mieux, au moins 5 photos")}
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
         {preInput("Description", "Description de propriété")}
         <textarea
